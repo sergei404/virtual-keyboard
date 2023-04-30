@@ -6,7 +6,8 @@
 }
 
 #field {
-  width: 82%;
+  /* width: 82%; */
+  width: 950px;
   padding: 15px;
   margin-bottom: 40px;
   outline: 0;
@@ -15,17 +16,33 @@
 }
 
 .keybord-section__wrap {
-  width: 82%;
+  /* width: 82%; */
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column;
+  align-content: stretch;
+}
+
+.keybord-section__row {
+  flex-basis: 100%;
+  display: flex;
   gap: 10px;
+  margin-bottom: 10px;
 }
 
 .keybord-section__btn {
   position: relative;
   min-width: 60px;
   height: 60px;
+}
+
+.keybord-section__btn--service {
+  flex-grow: 2;
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.keybord-section__btn--space {
+  width: 30%;
 }
 
 .keybord-section__shift-show {
