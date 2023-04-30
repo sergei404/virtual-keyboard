@@ -1,3 +1,7 @@
+body {
+  font-size: 18px;
+}
+
 .keybord-section {
   display: flex;
   flex-direction: column;
@@ -6,8 +10,7 @@
 }
 
 #field {
-  /* width: 82%; */
-  width: 950px;
+  width: 990px;
   padding: 15px;
   margin-bottom: 40px;
   outline: 0;
@@ -16,7 +19,6 @@
 }
 
 .keybord-section__wrap {
-  /* width: 82%; */
   display: flex;
   flex-direction: column;
   align-content: stretch;
@@ -26,19 +28,41 @@
   flex-basis: 100%;
   display: flex;
   gap: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .keybord-section__btn {
+  outline: 0;
   position: relative;
   min-width: 60px;
   height: 60px;
+  font-size: inherit;
+  font-weight: 700;
+  box-shadow: 2px 3px 0 hsl(55, 10%, 60%),
+              3px 0 0 hsl(55, 7%, 60%);
 }
+
+.keybord-section__btn:active {
+  top: 1px;
+  left: 1px;
+  box-shadow: 2px 2px 0 hsl(55, 10%, 60%);
+}
+
 
 .keybord-section__btn--service {
   flex-grow: 2;
-  background-color: #000000;
+  background-color: #453c3c;
   color: #ffffff;
+  box-shadow: 2px 3px 0 hsl(40, 1%, 42%),
+              3px 0 0 hsl(40, 2%, 30%);
+}
+
+.keybord-section__btn--service:hover {
+  background-color: #5f5959;
+}
+
+.keybord-section__btn--service:active {
+  box-shadow: 2px 2px 0 hsl(60, 2%, 17%);
 }
 
 .keybord-section__btn--space {
