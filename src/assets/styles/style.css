@@ -1,3 +1,35 @@
-h1 {
-  background-color: beige;
+.keybord-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+}
+
+#field {
+  width: 82%;
+  padding: 15px;
+  margin-bottom: 40px;
+  outline: 0;
+  border: 4px solid #e09c9c;
+  border-radius: 3px;
+}
+
+.keybord-section__wrap {
+  width: 82%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.keybord-section__btn {
+  position: relative;
+  min-width: 60px;
+  height: 60px;
+}
+
+.keybord-section__shift-show {
+  position: absolute;
+  left: 2px;
+  top: 0;
 }

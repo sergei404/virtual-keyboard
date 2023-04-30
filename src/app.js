@@ -1,2 +1,9 @@
-const title = '<h1>I am keybord</h1>';
-document.body.insertAdjacentHTML('afterend', title);
+import { getEntryField } from './js/entry-field.js';
+import { buttons, getKeyborsField } from './js/keybord.js';
+
+const keybordSection = `<section class="keybord-section">
+  ${getEntryField()}
+  ${getKeyborsField(buttons.join(' '))}
+</section>`;
+
+document.body.insertAdjacentHTML('afterend', keybordSection);
