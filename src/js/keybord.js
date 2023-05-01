@@ -43,4 +43,3 @@ function getKeyborsField(letters) {
 }
 
 export {russianLetters, inglishLetters, getKeyboardHTML, getKeyborsField}
-''

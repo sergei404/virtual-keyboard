@@ -77,3 +77,15 @@ body {
   left: 2px;
   top: 0;
 }
+
+.keybord-section__btn--capslock::before {
+  display: block;
+  content: '';
+  position: absolute;
+  min-width: 7px;
+  min-height: 7px;
+  top: 5px;
+  right: 5px;
+  background-color: chartreuse;
+  border-radius: 50%;
+}
