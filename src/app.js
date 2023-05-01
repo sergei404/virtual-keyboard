@@ -1,73 +1,113 @@
-import { getEntryField } from './js/entry-field.js';
-import { russianLetters, inglishLetters, getKeyboardHTML, getKeyborsField } from './js/keybord.js';
-import './js/input.js'
+import { getEntryField } from "./js/entry-field.js";
+import {
+  russianLetters,
+  inglishLetters,
+  getKeyboardHTML,
+  getKeyborsField,
+} from "./js/keybord.js";
 
-
-let language = 'en'
-let buttons = language === 'en' ? getKeyboardHTML(inglishLetters) : getKeyboardHTML(russianLetters);
-
-
-const keybordSection = `<section class="keybord-section">
-  ${getEntryField()}
-  ${getKeyborsField(buttons)}
-</section>`;
-
-document.body.insertAdjacentHTML('afterend', keybordSection);
-
-function removeBackgroundColor() {
-  [...document.querySelectorAll('.keybord-section__btn')].forEach(el => el.style.backgroundColor = '');
+function getLanguageSymbols(language = "en") {
+  localStorage.removeItem("language");
+  localStorage.setItem("language", language);
+  return language === "en"
+    ? getKeyboardHTML(inglishLetters)
+    : getKeyboardHTML(russianLetters);
 }
 
-// document.querySelector('.keybord-section__wrap').addEventListener('click', (evt) => {
-//   if (evt.target instanceof HTMLButtonElement || evt.target.parentElement instanceof HTMLButtonElement) {
-//      removeBackgroundColor()
-//      let btn = evt.target
-//      if (evt.target.children.length) {
-//       document.getElementById('field').value += btn.children[0].textContent.toLowerCase();
-//       btn.style.backgroundColor = '#edaeda'
-//     } else {
-//       document.getElementById('field').value += btn.textContent.toLowerCase()
-//       btn.style.backgroundColor = '#edaeda'
-//     }
-//   }
-// })
+//${getKeyborsField(getLanguageSymbols())}
+document.body.insertAdjacentHTML(
+  "afterend",
+  `<section class="keybord-section">
+    <h2>ОС - Windows, смена языка Ctrl(ControlLeft) + Alt(AltLeft)</h2>
+    ${getEntryField()}
+    ${getKeyborsField(getLanguageSymbols())}
+  </section>`
+);
 
-let events = new Set()
+//document.querySelector(".keybord-section").insertAdjacentHTML("afterend", getKeyborsField(getLanguageSymbols()));
+
+const field = document.getElementById("field");
+field.focus();
+
+function removeBackgroundColor() {
+  [...document.querySelectorAll(".keybord-section__btn")].forEach(
+    (el) => (el.style.backgroundColor = "")
+  );
+}
+
+document
+  .querySelector(".keybord-section__wrap")
+  .addEventListener("click", (evt) => {
+    if (
+      evt.target instanceof HTMLButtonElement ||
+      evt.target.parentElement instanceof HTMLButtonElement
+    ) {
+      removeBackgroundColor();
+      let btn = evt.target;
+      if (evt.target.children.length) {
+        field.value += btn.children[0].textContent.toLowerCase();
+        btn.style.backgroundColor = "#edaeda";
+        field.focus();
+      } else {
+        field.value += btn.textContent.toLowerCase();
+        field.focus();
+        btn.style.backgroundColor = "#edaeda";
+      }
+    }
+  });
+
+let events = new Set();
 
 addEventListener("keydown", (evt) => {
-  console.log(evt.key);
-  if (evt.key === ' ') {
-    events.add(evt.code)
-  } else if (evt.key === 'Control') {
-    events.add(evt.code)
-  } else if (evt.key === 'Shift') {
-    events.add(evt.code)
+  if (evt.key === " ") {
+    events.add(evt.code);
+    field.value += evt.key;
+  } else if (evt.key === "Control") {
+    events.add(evt.code);
+    field.value += "";
+  } else if (evt.key === "Shift") {
+    events.add(evt.code);
+    field.value += "";
+  } else if (evt.key === "Alt") {
+    events.add(evt.code);
+    field.value += "";
   } else {
-    events.add(evt.key)
+    events.add(evt.key);
   }
-  removeBackgroundColor()
-  console.log(events[0]);
+  removeBackgroundColor();
+  field.focus();
 });
 
-
-window.addEventListener('keyup', (evt) => {
+window.addEventListener("keyup", (evt) => {
   events.forEach((el) => {
     if (el.length === 1) {
-      el = el.toLowerCase()
+      el = el.toLowerCase();
     }
     let btn = document.getElementById(el);
     if (btn) {
-      btn.style.backgroundColor = '#edaeda'
+      btn.style.backgroundColor = "#edaeda";
     }
-  })
-  events.clear()
-})
+  });
 
-// addEventListener("keydown", function(event) {
-//   if (event.keyCode == 86)
-//     document.body.style.background = "violet";
-// });
-// addEventListener("keyup", function(event) {
-//   if (event.keyCode == 86)
-//     document.body.style.background = "";
-// });
+  if (events.has("ControlLeft") && events.has("AltLeft")) {
+    console.log();
+    if (localStorage.getItem('language') === 'en') {
+      document.querySelector(".keybord-section").removeChild(document.querySelector(".keybord-section__wrap"))
+      document.querySelector(".keybord-section").insertAdjacentHTML("beforeEnd", getKeyborsField(getLanguageSymbols('ru')))
+    } else {
+      document.querySelector(".keybord-section").removeChild(document.querySelector(".keybord-section__wrap"))
+      document.querySelector(".keybord-section").insertAdjacentHTML("beforeEnd", getKeyborsField(getLanguageSymbols('en')))
+    }
+  }
+
+  
+  if (events.has("CapsLock") && events.size === 1) {
+    document.getElementById("CapsLock").style.backgroundColor = "#edaeda";
+  } else if (events.has("CapsLock") && events.size > 1) {
+    events.clear();
+  } else {
+    events.clear();
+  }
+
+  field.focus();
+});
