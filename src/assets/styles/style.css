@@ -1,0 +1,91 @@
+body {
+  font-size: 18px;
+}
+
+.keybord-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+}
+
+#field {
+  width: 990px;
+  min-height: 200px;
+  padding: 15px;
+  margin-bottom: 40px;
+  outline: 0;
+  border: 4px solid #e09c9c;
+  border-radius: 3px;
+}
+
+.keybord-section__wrap {
+  display: flex;
+  flex-direction: column;
+  align-content: stretch;
+}
+
+.keybord-section__row {
+  flex-basis: 100%;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.keybord-section__btn {
+  outline: 0;
+  position: relative;
+  min-width: 60px;
+  height: 60px;
+  font-size: inherit;
+  font-weight: 700;
+  box-shadow: 2px 2px 0 hsl(55, 10%, 60%),
+              3px 3px 0 hsl(55, 7%, 60%);
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.keybord-section__btn:active {
+  top: 1px;
+  left: 1px;
+  box-shadow: 2px 2px 0 hsl(55, 10%, 60%);
+}
+
+
+.keybord-section__btn--service {
+  flex-grow: 2;
+  background-color: #453c3c;
+  color: #ffffff;
+  box-shadow: 2px 2px 0 hsl(40, 1%, 42%),
+              3px 3px 0 hsl(40, 2%, 30%);
+}
+
+.keybord-section__btn--service:hover {
+  background-color: #474343;
+}
+
+.keybord-section__btn--service:active {
+  box-shadow: 2px 2px 0 hsl(60, 2%, 17%);
+}
+
+.keybord-section__btn--space {
+  width: 30%;
+}
+
+.keybord-section__shift-show {
+  position: absolute;
+  left: 2px;
+  top: 0;
+}
+
+.keybord-section__btn--capslock::before {
+  display: block;
+  content: '';
+  position: absolute;
+  min-width: 7px;
+  min-height: 7px;
+  top: 5px;
+  right: 5px;
+  background-color: chartreuse;
+  border-radius: 50%;
+}
